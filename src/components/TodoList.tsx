@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
 import { ITodo } from '../types'
@@ -15,13 +16,19 @@ const TodoList = () => {
   )
 
   return (
-    <ul className="todo-list">
+    <ListWrapper>
       {hasAnyTodos
         ? todosByFilter.map(mapTodoToItems)
         : "No todos, yay!"
       }
-    </ul>
+    </ListWrapper>
   );
 }
+
+const ListWrapper = styled.ul`
+  margin-top: 1rem;
+  text-align: left;
+  list-style: none;
+`
 
 export default TodoList;
