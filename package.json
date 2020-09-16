@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "description": "A todo list app with React-Redux (with normalized store shape).",
   "keywords": [],
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "dependencies": {
     "classnames": "2.2.6",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",
     "react-scripts": "1.1.4",
-    "redux": "4.0.0"
+    "react-scripts-ts": "^3.1.0",
+    "redux": "4.0.0",
+    "typescript": "^4.0.2"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   }
 }
