@@ -1,8 +1,9 @@
 import {
-  ADD_TODO,
-  TOGGLE_TODO,
+  ADD_TODO_START,
+  ADD_TODO_SUCCESS,
   MODIFY_TODO_CONTENT,
   SET_FILTER,
+  TOGGLE_TODO,
   FilterActionTypes,
   TodoActionTypes,
 } from "./actionTypes";
@@ -12,17 +13,19 @@ import { AppThunk } from "./store";
 
 let nextTodoId = 0;
 
-export const addTodo = (id: number, content: string): TodoActionTypes => ({
-  type: ADD_TODO,
+const addTodoStart = (): TodoActionTypes => ({ type: ADD_TODO_START })
+export const addTodoSuccess = (id: number, content: string): TodoActionTypes => ({
+  type: ADD_TODO_SUCCESS,
   payload: { id, content }
 });
 
 export const addTodoWithTimeout = (content: string): AppThunk => (dispatch) => {
   const id = nextTodoId++
+  dispatch(addTodoStart())
 
   setTimeout(() => {
-    dispatch(addTodo(id, content))
-  }, 500)
+    dispatch(addTodoSuccess(id, content))
+  }, 2000)
 }
 
 export const toggleTodo = (id: number): TodoActionTypes => ({

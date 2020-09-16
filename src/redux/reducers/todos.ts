@@ -1,4 +1,10 @@
-import {ADD_TODO, MODIFY_TODO_CONTENT, TodoActionTypes, TOGGLE_TODO} from "../actionTypes";
+import {
+  ADD_TODO_START,
+  ADD_TODO_SUCCESS,
+  MODIFY_TODO_CONTENT,
+  TOGGLE_TODO,
+  TodoActionTypes,
+} from "../actionTypes";
 
 
 type TodoInfo = {
@@ -11,21 +17,30 @@ export interface TodosByIdDictionary {
 }
 
 interface TodosState {
+  isLoading: boolean;
   allIds: number[];
   byIds: TodosByIdDictionary;
 }
 
 const initialState: TodosState = {
+  isLoading: false,
   allIds: [],
   byIds: {}
 };
 
 const todos = (state = initialState, action: TodoActionTypes): TodosState => {
   switch (action.type) {
-    case ADD_TODO: {
+    case ADD_TODO_START: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case ADD_TODO_SUCCESS: {
       const { id, content } = action.payload;
       return {
         ...state,
+        isLoading: false,
         allIds: [...state.allIds, id],
         byIds: {
           ...state.byIds,

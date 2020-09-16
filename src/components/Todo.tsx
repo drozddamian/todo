@@ -75,13 +75,13 @@ const Todo: React.FC<Props> = (props: Props) => {
       </TodoContent>
 
       {!isTodoCompleted && (
-        <Button
+        <EditButton
           color={isEditingTodo ? 'success' : 'warning'}
           size='sm'
           onClick={handleEditClick}
         >
           {editTodoButtonText}
-        </Button>
+        </EditButton>
       )}
     </Item>
   )
@@ -103,6 +103,10 @@ const TodoText = styled.span`
     text-decoration: line-through;
     color: lightgray;
   `};
+`
+
+const EditButton = styled(Button)`
+  margin-left: 8px;
 `
 
 const TodoInput = styled.input`
