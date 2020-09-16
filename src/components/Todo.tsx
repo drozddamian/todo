@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { toggleTodo, modifyTodoContent } from "../redux/actions";
 import { ITodo } from "../types";
+import { Button } from 'reactstrap';
 
 interface Props {
   todo: ITodo;
@@ -30,7 +31,7 @@ const Todo: React.FC<Props> = (props: Props) => {
     dispatch(toggleTodo(todoId))
   }
 
-  const handleEditClick = (event) => {
+  const handleEditClick = (event: MouseEvent) => {
     event.stopPropagation()
 
     if (!isEditingTodo) {
@@ -41,7 +42,7 @@ const Todo: React.FC<Props> = (props: Props) => {
     setIsEditingTodo(false)
   }
 
-  const handleTodoContentChange = (event) => {
+  const handleTodoContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
     setTodoContent(value)
   }
@@ -51,6 +52,7 @@ const Todo: React.FC<Props> = (props: Props) => {
       return (
         <TodoInput
           type='text'
+          maxLength='30'
           value={todoContent}
           onChange={handleTodoContentChange}
         />
@@ -74,7 +76,12 @@ const Todo: React.FC<Props> = (props: Props) => {
       </TodoContent>
 
       {!isTodoCompleted && (
-        <EditButton onClick={handleEditClick}>
+        <EditButton
+          color={isEditingTodo ? 'success' : 'warning'}
+          size='sm'
+          onClick={handleEditClick}
+          disabled={!todoContent.length}
+        >
           {editTodoButtonText}
         </EditButton>
       )}
@@ -83,12 +90,16 @@ const Todo: React.FC<Props> = (props: Props) => {
 }
 
 const Item = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: monospace;
   cursor: pointer;
   line-height: 1.5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 4px;
 `
 
 const TodoContent = styled.div``
@@ -100,13 +111,13 @@ const TodoText = styled.span`
   `};
 `
 
-const EditButton = styled.button`
-
+const EditButton = styled(Button)`
+  margin-left: 8px;
 `
 
 const TodoInput = styled.input`
   border: none;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #626A6C;
   
   :focus {
     outline: none;

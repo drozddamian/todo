@@ -1,11 +1,15 @@
 import React, { useState, ChangeEvent } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { Button, Input } from 'reactstrap';
+import { useDispatch, useSelector } from "react-redux";
 import { addTodoWithTimeout } from "../redux/actions";
 
 const AddTodo = () => {
   const dispatch = useDispatch()
   const [todo, setTodo] = useState<string>('')
+  const { isLoading } = useSelector(state => state.todos)
+
+  const isAddButtonDisabled = isLoading || !todo.length
 
   const updateInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
@@ -19,19 +23,31 @@ const AddTodo = () => {
 
   return (
     <div>
-      <input
+      <Input
+        type="text"
+        maxlength='30'
         onChange={updateInput}
         value={todo}
       />
-      <AddTodoButton onClick={handleAddTodo}>
+
+      <AddTodoButton
+        color="primary"
+        disabled={isAddButtonDisabled}
+        onClick={handleAddTodo}
+      >
         Add Todo
       </AddTodoButton>
     </div>
   )
 }
 
-const AddTodoButton = styled.button`
-  margin-left: 0.5rem;
+const AddTodoButton = styled(Button)`
+  margin-top: 12px;
+  width: 100%;
+  
+  @media (min-width: 640px) {
+    width: auto;
+  }
 `
 
 export default AddTodo

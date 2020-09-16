@@ -1,4 +1,5 @@
 import React from "react";
+import { Spinner } from 'reactstrap';
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
@@ -8,6 +9,7 @@ import Todo from "./Todo";
 const TodoList = () => {
   const visibilityFilter = useSelector(state => state.visibilityFilter)
   const todos = useSelector(state => state.todos)
+  const { isLoading } = todos
   const todosByFilter = getTodosByVisibilityFilter(todos, visibilityFilter)
   const hasAnyTodos = todosByFilter && todosByFilter.length
 
@@ -15,21 +17,29 @@ const TodoList = () => {
     <Todo key={`todo-${todo.id}`} todo={todo} />
   )
 
+  const getListContent = () => {
+    if (isLoading) {
+      return <Spinner color="warning" />
+    }
+    return hasAnyTodos
+      ? todosByFilter.map(mapTodoToItems)
+      : "No todos, yay! 🎉"
+  }
+
+  const listContent = getListContent()
+
   return (
     <ListWrapper>
-      {hasAnyTodos
-        ? todosByFilter.map(mapTodoToItems)
-        : "No todos, yay!"
-      }
+      {listContent}
     </ListWrapper>
   );
 }
 
 const ListWrapper = styled.ul`
-  margin-top: 1rem;
   text-align: center;
   list-style: none;
   padding: 0;
+  margin-top: 12px;
 `
 
 export default TodoList;
