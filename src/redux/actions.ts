@@ -7,17 +7,23 @@ import {
   TodoActionTypes,
 } from "./actionTypes";
 import { visibilityFilterType } from "../types";
+import { AppThunk } from "./store";
 
 
 let nextTodoId = 0;
 
-export const addTodo = (content: string): TodoActionTypes => ({
+export const addTodo = (id: number, content: string): TodoActionTypes => ({
   type: ADD_TODO,
-  payload: {
-    id: ++nextTodoId,
-    content
-  }
+  payload: { id, content }
 });
+
+export const addTodoWithTimeout = (content: string): AppThunk => (dispatch) => {
+  const id = nextTodoId++
+
+  setTimeout(() => {
+    dispatch(addTodo(id, content))
+  }, 500)
+}
 
 export const toggleTodo = (id: number): TodoActionTypes => ({
   type: TOGGLE_TODO,
