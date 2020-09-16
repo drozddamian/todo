@@ -52,6 +52,7 @@ const Todo: React.FC<Props> = (props: Props) => {
       return (
         <TodoInput
           type='text'
+          maxLength='30'
           value={todoContent}
           onChange={handleTodoContentChange}
         />
@@ -79,6 +80,7 @@ const Todo: React.FC<Props> = (props: Props) => {
           color={isEditingTodo ? 'success' : 'warning'}
           size='sm'
           onClick={handleEditClick}
+          disabled={!todoContent.length}
         >
           {editTodoButtonText}
         </EditButton>
@@ -88,12 +90,16 @@ const Todo: React.FC<Props> = (props: Props) => {
 }
 
 const Item = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: monospace;
   cursor: pointer;
   line-height: 1.5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 4px;
 `
 
 const TodoContent = styled.div``
@@ -111,7 +117,7 @@ const EditButton = styled(Button)`
 
 const TodoInput = styled.input`
   border: none;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #626A6C;
   
   :focus {
     outline: none;

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Button, ButtonGroup } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../redux/actions";
@@ -16,7 +17,7 @@ const VisibilityFilters = () => {
   }
 
   return (
-    <ButtonGroup>
+    <FiltersButtonGroup>
       {visibilityFilterKeys.map(filterKey => {
         const filter = VISIBILITY_FILTERS[filterKey]
         const isCurrentFilterActive = filter === activeFilter
@@ -32,8 +33,12 @@ const VisibilityFilters = () => {
           </Button>
         );
       })}
-    </ButtonGroup>
+    </FiltersButtonGroup>
   );
 };
+
+const FiltersButtonGroup = styled(ButtonGroup)`
+  width: 100%;
+`
 
 export default VisibilityFilters

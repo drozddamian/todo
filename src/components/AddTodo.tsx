@@ -9,6 +9,8 @@ const AddTodo = () => {
   const [todo, setTodo] = useState<string>('')
   const { isLoading } = useSelector(state => state.todos)
 
+  const isAddButtonDisabled = isLoading || !todo.length
+
   const updateInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
     setTodo(value)
@@ -23,23 +25,29 @@ const AddTodo = () => {
     <div>
       <Input
         type="text"
+        maxlength='30'
         onChange={updateInput}
         value={todo}
       />
 
-      <Button
+      <AddTodoButton
         color="primary"
-        disabled={isLoading}
+        disabled={isAddButtonDisabled}
         onClick={handleAddTodo}
       >
         Add Todo
-      </Button>
+      </AddTodoButton>
     </div>
   )
 }
 
-const AddTodoButton = styled.button`
-  margin-left: 0.5rem;
+const AddTodoButton = styled(Button)`
+  margin-top: 12px;
+  width: 100%;
+  
+  @media (min-width: 640px) {
+    width: auto;
+  }
 `
 
 export default AddTodo

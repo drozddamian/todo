@@ -23,7 +23,7 @@ const TodoList = () => {
     }
     return hasAnyTodos
       ? todosByFilter.map(mapTodoToItems)
-      : "No todos, yay!"
+      : "No todos, yay! 🎉"
   }
 
   const listContent = getListContent()
@@ -36,10 +36,10 @@ const TodoList = () => {
 }
 
 const ListWrapper = styled.ul`
-  margin-top: 1rem;
   text-align: center;
   list-style: none;
   padding: 0;
+  margin-top: 12px;
 `
 
 export default TodoList;

@@ -25,7 +25,7 @@ export const addTodoWithTimeout = (content: string): AppThunk => (dispatch) => {
 
   setTimeout(() => {
     dispatch(addTodoSuccess(id, content))
-  }, 2000)
+  }, 5000)
 }
 
 export const toggleTodo = (id: number): TodoActionTypes => ({
