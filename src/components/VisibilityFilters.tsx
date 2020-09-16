@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import { Button, ButtonGroup } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../redux/actions";
 import { VISIBILITY_FILTERS } from "../constants";
@@ -16,33 +16,24 @@ const VisibilityFilters = () => {
   }
 
   return (
-    <div>
+    <ButtonGroup>
       {visibilityFilterKeys.map(filterKey => {
-        const currentFilter = VISIBILITY_FILTERS[filterKey]
-        const isCurrentFilterActive = currentFilter === activeFilter
+        const filter = VISIBILITY_FILTERS[filterKey]
+        const isCurrentFilterActive = filter === activeFilter
 
         return (
-          <FilterItem
-            key={`visibility-filter-${currentFilter}`}
-            onClick={handleFilterClick(currentFilter)}
-            isActive={isCurrentFilterActive}
+          <Button
+            color='primary'
+            key={`visibility-filter-${filter}`}
+            onClick={handleFilterClick(filter)}
+            active={isCurrentFilterActive}
           >
-            {currentFilter}
-          </FilterItem>
+            {filter}
+          </Button>
         );
       })}
-    </div>
+    </ButtonGroup>
   );
 };
-
-const FilterItem = styled.span`
-  padding: 0.3rem 0;
-  margin: 0 0.3rem;
-  cursor: pointer;
-  
-  ${(props) => props.isActive && css`
-    border-bottom: 1px solid black;
-  `};
-`
 
 export default VisibilityFilters
