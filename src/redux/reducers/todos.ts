@@ -24,7 +24,6 @@ const todos = (state = initialState, action: TodoActionTypes): TodosState => {
   switch (action.type) {
     case ADD_TODO: {
       const { id, content } = action.payload;
-      console.log(state.byIds)
       return {
         ...state,
         allIds: [...state.allIds, id],
