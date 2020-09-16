@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
 import { ITodo } from '../types'
 import Todo from "./Todo";
+import { RootState } from "../redux/reducers";
 
 const TodoList = () => {
-  const visibilityFilter = useSelector(state => state.visibilityFilter)
-  const todos = useSelector(state => state.todos)
-  const { isLoading } = todos
-  const todosByFilter = getTodosByVisibilityFilter(todos, visibilityFilter)
+  const visibilityFilter = useSelector((state: RootState) => state.visibilityFilter)
+  const todoState = useSelector((state: RootState) => state.todos)
+  const { isLoading } = todoState
+  const todosByFilter = getTodosByVisibilityFilter(todoState, visibilityFilter)
   const hasAnyTodos = todosByFilter && todosByFilter.length
 
   const mapTodoToItems = (todo: ITodo) => (

@@ -52,7 +52,6 @@ const Todo: React.FC<Props> = (props: Props) => {
       return (
         <TodoInput
           type='text'
-          maxLength='30'
           value={todoContent}
           onChange={handleTodoContentChange}
         />

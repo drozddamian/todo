@@ -16,7 +16,7 @@ export interface TodosByIdDictionary {
   [key: number]: TodoInfo;
 }
 
-interface TodosState {
+export interface TodosState {
   isLoading: boolean;
   allIds: number[];
   byIds: TodosByIdDictionary;

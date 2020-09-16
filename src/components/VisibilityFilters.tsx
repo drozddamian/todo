@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../redux/actions";
 import { VISIBILITY_FILTERS } from "../constants";
 import { visibilityFilterType } from "../types"
+import { RootState } from "../redux/reducers";
 
 const VisibilityFilters = () => {
   const dispatch = useDispatch()
-  const activeFilter = useSelector(state => state.visibilityFilter)
+  const activeFilter = useSelector((state: RootState) => state.visibilityFilter)
 
   const visibilityFilterKeys = Object.keys(VISIBILITY_FILTERS)
 

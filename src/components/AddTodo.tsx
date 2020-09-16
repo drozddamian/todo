@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { Button, Input } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { addTodoWithTimeout } from "../redux/actions";
+import { RootState } from "../redux/reducers";
 
 const AddTodo = () => {
   const dispatch = useDispatch()
   const [todo, setTodo] = useState<string>('')
-  const { isLoading } = useSelector(state => state.todos)
+  const { isLoading } = useSelector((state: RootState) => state.todos)
 
   const isAddButtonDisabled = isLoading || !todo.length
 
