@@ -1,11 +1,26 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actionTypes";
+import { ADD_TODO, TOGGLE_TODO, TodoActionTypes } from "../actionTypes";
 
-const initialState = {
+
+type TodoInfo = {
+  content: string;
+  completed: boolean;
+}
+
+export interface TodosByIdDictionary {
+  [key: number]: TodoInfo;
+}
+
+interface TodosState {
+  allIds: number[];
+  byIds: TodosByIdDictionary;
+}
+
+const initialState: TodosState = {
   allIds: [],
   byIds: {}
 };
 
-export default function(state = initialState, action) {
+const todos = (state = initialState, action: TodoActionTypes): TodosState => {
   switch (action.type) {
     case ADD_TODO: {
       const { id, content } = action.payload;
@@ -38,3 +53,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default todos;
