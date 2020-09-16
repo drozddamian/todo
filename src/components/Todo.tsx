@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { toggleTodo, modifyTodoContent } from "../redux/actions";
@@ -31,7 +31,7 @@ const Todo: React.FC<Props> = (props: Props) => {
     dispatch(toggleTodo(todoId))
   }
 
-  const handleEditClick = (event) => {
+  const handleEditClick = (event: MouseEvent) => {
     event.stopPropagation()
 
     if (!isEditingTodo) {
@@ -42,7 +42,7 @@ const Todo: React.FC<Props> = (props: Props) => {
     setIsEditingTodo(false)
   }
 
-  const handleTodoContentChange = (event) => {
+  const handleTodoContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
     setTodoContent(value)
   }
