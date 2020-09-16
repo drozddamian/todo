@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/actions";
 
@@ -22,11 +23,15 @@ const AddTodo = () => {
         onChange={updateInput}
         value={todo}
       />
-      <button className="add-todo" onClick={handleAddTodo}>
+      <AddTodoButton onClick={handleAddTodo}>
         Add Todo
-      </button>
+      </AddTodoButton>
     </div>
   )
 }
+
+const AddTodoButton = styled.button`
+  margin-left: 0.5rem;
+`
 
 export default AddTodo

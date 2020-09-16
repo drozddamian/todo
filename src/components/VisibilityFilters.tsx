@@ -1,5 +1,5 @@
 import React from "react";
-import cx from "classnames";
+import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../redux/actions";
 import { VISIBILITY_FILTERS } from "../constants";
@@ -15,28 +15,34 @@ const VisibilityFilters = () => {
     dispatch(setFilter(filter))
   }
 
-
   return (
-    <div className="visibility-filters">
+    <div>
       {visibilityFilterKeys.map(filterKey => {
         const currentFilter = VISIBILITY_FILTERS[filterKey]
         const isCurrentFilterActive = currentFilter === activeFilter
 
         return (
-          <span
+          <FilterItem
             key={`visibility-filter-${currentFilter}`}
             onClick={handleFilterClick(currentFilter)}
-            className={cx(
-              "filter",
-              isCurrentFilterActive && "filter--active"
-            )}
+            isActive={isCurrentFilterActive}
           >
             {currentFilter}
-          </span>
+          </FilterItem>
         );
       })}
     </div>
   );
 };
+
+const FilterItem = styled.span`
+  padding: 0.3rem 0;
+  margin: 0 0.3rem;
+  cursor: pointer;
+  
+  ${(props) => props.isActive && css`
+    border-bottom: 1px solid black;
+  `};
+`
 
 export default VisibilityFilters

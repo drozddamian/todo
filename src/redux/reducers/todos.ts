@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, TodoActionTypes } from "../actionTypes";
+import {ADD_TODO, MODIFY_TODO_CONTENT, TodoActionTypes, TOGGLE_TODO} from "../actionTypes";
 
 
 type TodoInfo = {
@@ -45,6 +45,19 @@ const todos = (state = initialState, action: TodoActionTypes): TodosState => {
           [id]: {
             ...state.byIds[id],
             completed: !state.byIds[id].completed
+          }
+        }
+      };
+    }
+    case MODIFY_TODO_CONTENT: {
+      const { id, newContent } = action.payload;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            ...state.byIds[id],
+            content: newContent,
           }
         }
       };
