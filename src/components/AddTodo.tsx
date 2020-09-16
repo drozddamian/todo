@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/actions";
+import { addTodoWithTimeout } from "../redux/actions";
 
 const AddTodo = () => {
   const dispatch = useDispatch()
@@ -13,7 +13,7 @@ const AddTodo = () => {
   }
 
   const handleAddTodo = () => {
-    dispatch(addTodo(todo))
+    dispatch(addTodoWithTimeout(todo))
     setTodo('')
   }
 
