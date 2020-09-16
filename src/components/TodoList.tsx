@@ -27,8 +27,9 @@ const TodoList = () => {
 
 const ListWrapper = styled.ul`
   margin-top: 1rem;
-  text-align: left;
+  text-align: center;
   list-style: none;
+  padding: 0;
 `
 
 export default TodoList;
