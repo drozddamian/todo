@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { toggleTodo, modifyTodoContent } from "../redux/actions";
 import { ITodo } from "../types";
+import { Button } from 'reactstrap';
 
 interface Props {
   todo: ITodo;
@@ -74,9 +75,13 @@ const Todo: React.FC<Props> = (props: Props) => {
       </TodoContent>
 
       {!isTodoCompleted && (
-        <EditButton onClick={handleEditClick}>
+        <Button
+          color={isEditingTodo ? 'success' : 'warning'}
+          size='sm'
+          onClick={handleEditClick}
+        >
           {editTodoButtonText}
-        </EditButton>
+        </Button>
       )}
     </Item>
   )
@@ -98,10 +103,6 @@ const TodoText = styled.span`
     text-decoration: line-through;
     color: lightgray;
   `};
-`
-
-const EditButton = styled.button`
-
 `
 
 const TodoInput = styled.input`

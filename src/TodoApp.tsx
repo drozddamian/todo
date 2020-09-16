@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
 import VisibilityFilters from "./components/VisibilityFilters";
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function TodoApp() {
   return (

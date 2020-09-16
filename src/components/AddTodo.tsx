@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import styled from "styled-components";
+import { Button, Input } from 'reactstrap';
 import { useDispatch } from "react-redux";
 import { addTodoWithTimeout } from "../redux/actions";
 
@@ -19,13 +20,14 @@ const AddTodo = () => {
 
   return (
     <div>
-      <input
+      <Input
+        type="text"
         onChange={updateInput}
         value={todo}
       />
-      <AddTodoButton onClick={handleAddTodo}>
+      <Button color="primary" onClick={handleAddTodo}>
         Add Todo
-      </AddTodoButton>
+      </Button>
     </div>
   )
 }
